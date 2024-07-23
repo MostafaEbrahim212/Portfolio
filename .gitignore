@@ -1,0 +1,35 @@
+# Ignore node_modules directory
+node_modules/
+package-lock.json
+package.json
+tailwind.config.js
+
+# Ignore input.css file
+input.css
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore cache files
+*.cache
+
+# Ignore build output directories
+dist/
+build/
+
+# Ignore output files
+*.out
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
+desktop.ini
