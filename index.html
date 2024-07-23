@@ -7,39 +7,95 @@
     <title>Home</title>
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" sizes="16x16 32x32 48x48" href="./imgs/portfolio.png">
+
+    <style>
+        .hidden-span {
+            position: relative;
+            opacity: 0;
+            bottom: -50px;
+            transition: all 1s ease-in-out;
+        }
+
+        .visible-span {
+            position: relative;
+            opacity: 1;
+            bottom: 0;
+            transition: all 1s ease-in-out;
+        }
+
+        .animate-up {
+            transform: translateY(-100%);
+            transition: all 1s ease-in-out;
+        }
+
+        .hidden-animate {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('overlay');
+            const intro = document.getElementById('intro');
+
+            if (!sessionStorage.getItem('animationShowed')) {
+                setTimeout(() => {
+                    intro.querySelectorAll('span').forEach((span, idx) => {
+                        setTimeout(() => {
+                            span.classList.remove('hidden-span');
+                            span.classList.add('visible-span');
+                        }, idx * 100);
+                    });
+                    setTimeout(() => {
+                        overlay.classList.add('animate-up');
+                    }, intro.querySelectorAll('span').length * 100 + 1000);
+                    sessionStorage.setItem('animationShowed', 'true');
+                }, 500);
+            } else {
+                overlay.style.display = 'none';
+            }
+        });
+    </script>
 </head>
 
 <body class="font-mono  relative bg-gray-50 overflow-hidden">
 
     <div id="overlay"
-        class="fixed top-0 left-0 w-full h-full bg-black opacity-0 z-50 text-center  text-5xl flex justify-center items-center">
-        <!-- every portfolio letter in a span and the even is white and the odd is purple-600 -->
-
-        <div class="intro">
-            <span class="text-white">P</span>
-            <span class="text-purple-600">o</span>
-            <span class="text-white">r</span>
-            <span class="text-purple-600">t</span>
-            <span class="text-white">f</span>
-            <span class="text-purple-600">o</span>
-            <span class="text-white">l</span>
-            <span class="text-purple-600">i</span>
-            <span class="text-white">o</span>
-            <span class="text-purple-600">.</span>
+        class="overlay  fixed w-full h-screen bg-white opacity-100 z-50 text-center  text-3xl sm:text-5xl flex justify-center items-center font-bold transition-all duration-1000">
+        <div id="intro" class="intro relative">
+            <span class="text-black relative hidden-span">P</span>
+            <span class="text-purple-600 relative hidden-span">o</span>
+            <span class="text-black relative hidden-span">r</span>
+            <span class="text-purple-600 relative hidden-span">t</span>
+            <span class="text-black relative hidden-span">f</span>
+            <span class="text-purple-600 relative hidden-span">o</span>
+            <span class="text-black relative hidden-span">l</span>
+            <span class="text-purple-600 relative hidden-span">i</span>
+            <span class="text-black relative hidden-span">o</span>
+            <span class="text-purple-600 relative hidden-span">.</span>
         </div>
     </div>
-    <div id="ball" class="absolute rounded-full z-40 w-20 h-20 bg-gradient-to-b from-purple-600 to-purple-300">
+    <div id="ball" class="absolute rounded-full z-30 w-20 h-20 bg-gradient-to-b from-purple-600 to-purple-300">
     </div>
     <button class="fixed p-3 right-4 bottom-4 rounded-full  bg-purple-600 opacity-50 hover:opacity-100  z-50 text-white"
         id="btn-top">Top</button>
 
     <div class="main w-full h-screen  relative">
-        <main id="main" class="w-full h-full">
+        <main id="main" class="w-full h-screen">
             <header
                 class="sticky container w-full bg-white rounded-b-lg p-3 flex items-center shadow-md shadow-purple-100 ">
                 <a class="text-2xl font-bold me-3 block" href="#">
                     <P>
-                        <span class="text-purple-600">M</span>ostafa <span class="text-purple-600">E</span>brahim
+                        <span class="text-black">P</span>
+                        <span class="text-purple-600">o</span>
+                        <span class="text-black">r</span>
+                        <span class="text-purple-600">t</span>
+                        <span class="text-black">f</span>
+                        <span class="text-purple-600">o</span>
+                        <span class="text-black">l</span>
+                        <span class="text-purple-600">i</span>
+                        <span class="text-black">o</span>
+
                     </P>
                 </a>
                 <button id="toggle-nav" class="ms-auto text-2xl font-bold sm:hidden ">
@@ -65,53 +121,58 @@
                 </ul>
             </header>
 
-            <section class="w-full h-[calc(100%-60px)]" id="Home">
-                <div class="container w-full h-full grid gap-3 grid-cols-12 ">
-                    <div class="flex flex-col justify-center space-y-3 text-start relative col-span-12 lg:col-span-6">
+            <section class="w-full h-[calc(100vh-60px)]" id="Home">
+                <div class="container h-full">
+                    <div class="grid gap-3 grid-cols-12 h-full">
                         <div
-                            class=" mx-auto w-0 h-0 border-[30px] -mb-10 border-purple-600 border-l-transparent border-r-transparent border-b-transparent animate-bounce ">
+                            class="flex flex-col justify-center space-y-3 text-start relative col-span-12 lg:col-span-6 row-span-12 pt-5">
+                            <div
+                                class=" mt-5 mx-auto w-0 h-0 border-[30px] -mb-10 border-purple-600 border-l-transparent border-r-transparent border-b-transparent animate-bounce ">
+                            </div>
+                            <h1 class="font-bold text-5xl">Hey, I'am <span class="text-purple-600">Mostafa
+                                    Ebrahim</span>
+                            </h1>
+                            <p class="text-xl font-semibold">I'am a verstile Developer specializing in both Backend and
+                                Frontend Technologies. I build dynamic web applications with laravel for the backend and
+                                create
+                                engaging user interfaces with modern frontend tools</p>
                         </div>
-                        <h1 class="font-bold text-5xl">Hey, I'am <span class="text-purple-600">Mostafa
-                                Ebrahim</span>
-                        </h1>
-                        <p class="text-2xl font-semibold">I'am a verstile Developer specializing in both Backend and
-                            Frontend Technologies. I build dynamic web applications with laravel for the backend and
-                            create
-                            engaging user interfaces with modern frontend tools</p>
-                    </div>
-                    <div class="grow flex flex-col space-y-5 items-center justify-center col-span-12 lg:col-span-6">
+                        <div
+                            class="grow flex flex-col space-y-5 items-center justify-center col-span-12 lg:col-span-6 row-span-12 overflow-hidden p-3">
 
-                        <div
-                            class=" rounded-full relative border-purple-600 border-[20px] overflow-hidden flex justify-center items-center w-full">
-                            <img src="./imgs/my-img.png" class="w-full h-full text-center saturate-0"
-                                alt="mostafa Image" decoding="async">
+                            <div
+                                class="rounded-full relative border-purple-600 border-[20px] overflow-hidden flex justify-center items-center">
+                                <img src="./imgs/my-img.png" class="w-full h-full text-center saturate-0"
+                                    alt="mostafa Image" decoding="async">
+                            </div>
+                            <ul class=" flex flex-row gap-2">
+                                <li class="flex items-center text-white">
+                                    <a href="https://www.facebook.com/mostafa.ebrahim.22" target="_blank"
+                                        class="flex items-center justify-center bg-blue-600 h-12 w-12 text-3xl rounded-full">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="flex flex-col items-center text-white">
+                                    <a href="https://github.com/MostafaEbrahim212" target="_blank"
+                                        class="flex items-center justify-center bg-black h-12 w-12 text-3xl rounded-full">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                </li>
+                                <li class="flex flex-col items-center text-white">
+                                    <a href="mailto:sasa9121963@gmail.com" target="_blank"
+                                        class="flex items-center justify-center bg-red-500 h-12 w-12 text-3xl rounded-full">
+                                        <i class="fa-brands fa-google"></i>
+                                    </a>
+                                </li>
+                                <li class="flex flex-col items-center text-white">
+                                    <a href="https://www.linkedin.com/in/mostafa-ebrahim-91384326a/"
+                                    target="_blank"
+                                        class="flex items-center justify-center bg-blue-500 h-12 w-12 text-3xl rounded-full">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class=" flex flex-row gap-2">
-                            <li class="flex items-center text-white">
-                                <a href="#"
-                                    class="flex items-center justify-center bg-blue-600 h-12 w-12 text-3xl rounded-full">
-                                    <i class="fa-brands fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="flex flex-col items-center text-white">
-                                <a href="#"
-                                    class="flex items-center justify-center bg-black h-12 w-12 text-3xl rounded-full">
-                                    <i class="fa-brands fa-github"></i>
-                                </a>
-                            </li>
-                            <li class="flex flex-col items-center text-white">
-                                <a href="#"
-                                    class="flex items-center justify-center bg-red-500 h-12 w-12 text-3xl rounded-full">
-                                    <i class="fa-brands fa-google"></i>
-                                </a>
-                            </li>
-                            <li class="flex flex-col items-center text-white">
-                                <a href="#"
-                                    class="flex items-center justify-center bg-blue-500 h-12 w-12 text-3xl rounded-full">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </section>
