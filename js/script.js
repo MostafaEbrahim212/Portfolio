@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+console.log(document.location.href);
 const topButton = document.getElementById('btn-top');
 const scrollFunction = () => {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -46,7 +46,6 @@ function topFunction() {
 window.onscroll = () => {
     scrollFunction();
 };
-
 topButton.addEventListener('click', () => {
     topFunction()
 })
