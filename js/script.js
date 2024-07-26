@@ -13,15 +13,13 @@ if (window.innerWidth >= 768) {
     nav.classList.add('hidden')
 }
 
-
-
 const navs = document.querySelectorAll('.locations')
 document.addEventListener('DOMContentLoaded', () => {
     navs.forEach(nav => {
         nav.querySelectorAll('li').forEach(li => {
             let href = li.querySelector('a').href;
             if (document.location.href == href) {
-                li.classList.add('active')
+                li.classList.add('active-link')
             }
         })
     })
@@ -52,6 +50,51 @@ window.onscroll = () => {
 topButton.addEventListener('click', () => {
     topFunction()
 })
+
+
+
+
+// HOME SCRIPTIS
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('overlay');
+    const intro = document.getElementById('intro');
+
+    if (!sessionStorage.getItem('animationShowed')) {
+        setTimeout(() => {
+            intro.querySelectorAll('span').forEach((span, idx) => {
+                setTimeout(() => {
+                    span.classList.remove('hidden-span');
+                    span.classList.add('visible-span');
+                }, idx * 100);
+            });
+            setTimeout(() => {
+                overlay.classList.add('animate-up');
+            }, intro.querySelectorAll('span').length * 100 + 1000);
+            sessionStorage.setItem('animationShowed', 'true');
+        }, 500);
+    } else {
+        overlay.style.display = 'none';
+    }
+
+    const text = `I am a versatile Developer specializing in both Backend and Frontend Technologies. I build dynamic web applications with Laravel for the backend and create engaging user interfaces with modern frontend tools`
+    let index = 0;
+    let speed = 50;
+
+    function typeWriter() {
+        if (index < text.length) {
+            const typeWriterText = document.getElementById('typewriterText');
+            typeWriterText.innerHTML = text.substring(0, index + 1) + `<span class="blink-cursor w-fit p-0 m-0">|</span>`
+            index++;
+            setTimeout(typeWriter, speed)
+        }
+
+    }
+    typeWriter();
+});
+// HOME SCRIPTIS
+
+
+
 
 
 const ball = document.getElementById('ball');

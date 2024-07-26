@@ -1,67 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Home</title>
+    <link rel="stylesheet" href="./css/output.css">
     <link rel="stylesheet" href="./css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" sizes="16x16 32x32 48x48" href="./imgs/portfolio.png">
-
+    <link rel="stylesheet" href="./css/style.css">
     <style>
-        .hidden-span {
-            position: relative;
-            opacity: 0;
-            bottom: -50px;
-            transition: all 1s ease-in-out;
-        }
-
-        .visible-span {
-            position: relative;
-            opacity: 1;
-            bottom: 0;
-            transition: all 1s ease-in-out;
-        }
-
-        .animate-up {
-            transform: translateY(-100%);
-            transition: all 1s ease-in-out;
-        }
-
-        .hidden-animate {
-            display: none;
-        }
+        .active-link {}
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('overlay');
-            const intro = document.getElementById('intro');
-
-            if (!sessionStorage.getItem('animationShowed')) {
-                setTimeout(() => {
-                    intro.querySelectorAll('span').forEach((span, idx) => {
-                        setTimeout(() => {
-                            span.classList.remove('hidden-span');
-                            span.classList.add('visible-span');
-                        }, idx * 100);
-                    });
-                    setTimeout(() => {
-                        overlay.classList.add('animate-up');
-                    }, intro.querySelectorAll('span').length * 100 + 1000);
-                    sessionStorage.setItem('animationShowed', 'true');
-                }, 500);
-            } else {
-                overlay.style.display = 'none';
-            }
-        });
-    </script>
 </head>
 
-<body class="font-mono  relative bg-gray-50 overflow-hidden">
+<body class="font-mono  relative bg-gray-50 min-h-screen flex flex-col">
 
     <div id="overlay"
-        class="overlay  fixed w-full h-screen bg-white opacity-100 z-50 text-center  text-3xl sm:text-5xl flex justify-center items-center font-bold transition-all duration-1000">
+        class="overlay fixed w-full h-screen bg-white opacity-100 z-[99999] text-center  text-3xl sm:text-5xl flex justify-center items-center font-bold transition-all duration-1000">
         <div id="intro" class="intro relative">
             <span class="text-black relative hidden-span">P</span>
             <span class="text-purple-600 relative hidden-span">o</span>
@@ -75,130 +32,99 @@
             <span class="text-purple-600 relative hidden-span">.</span>
         </div>
     </div>
-    <div id="ball" class="absolute rounded-full z-30 w-20 h-20 bg-gradient-to-b from-purple-600 to-purple-300">
-    </div>
+
+    <!-- <div id="ball" class="w-20 h-20 bg-purple-600 rounded-full absolute"></div> -->
+
     <button class="fixed p-3 right-4 bottom-4 rounded-full  bg-purple-600 opacity-50 hover:opacity-100  z-50 text-white"
         id="btn-top">Top</button>
 
-    <div class="main w-full h-screen  relative">
-        <main id="main" class="w-full h-screen">
-            <header
-                class="sticky container w-full bg-white rounded-b-lg p-3 flex items-center shadow-md shadow-purple-100 ">
-                <a class="text-2xl font-bold me-3 block" href="#">
-                    <P>
-                        <span class="text-black">P</span>
-                        <span class="text-purple-600">o</span>
-                        <span class="text-black">r</span>
-                        <span class="text-purple-600">t</span>
-                        <span class="text-black">f</span>
-                        <span class="text-purple-600">o</span>
-                        <span class="text-black">l</span>
-                        <span class="text-purple-600">i</span>
-                        <span class="text-black">o</span>
 
-                    </P>
-                </a>
-                <button id="toggle-nav" class="ms-auto text-2xl font-bold sm:hidden ">
-                    <i class="icon fa-solid fa-bars"></i>
-                </button>
-                <ul
-                    class="locations items-center space-x-5 text-lg text-purple-500 hover:text-purple-600 mx-auto font-semibold  hidden sm:flex">
-                    <li class="rounded-lg relative bottom-animation">
-                        <a class="block h-full w-full" href="./index.html">Home</a>
+    <header class="sticky container bg-white rounded-b-lg p-3 flex items-center shadow-md shadow-purple-100 ">
+        <a class="text-2xl font-bold me-3 block" href="#">
+            <P>
+                <span class="text-black">P</span>
+                <span class="text-purple-600">o</span>
+                <span class="text-black">r</span>
+                <span class="text-purple-600">t</span>
+                <span class="text-black">f</span>
+                <span class="text-purple-600">o</span>
+                <span class="text-black">l</span>
+                <span class="text-purple-600">i</span>
+                <span class="text-black">o</span>
+
+            </P>
+        </a>
+        <button id="toggle-nav" class="ms-auto text-2xl font-bold sm:hidden ">
+            <i class="icon fa-solid fa-bars"></i>
+        </button>
+        <ul class="locations items-center space-x-5 text-lg text-purple-500 mx-auto font-semibold  hidden sm:flex">
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./index.html">Home</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./about.html">About</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./resume.html">Resume</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./service.html">Service</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./contact.html">Contact</a>
+            </li>
+        </ul>
+    </header>
+    <main class="flex-grow flex items-center justify-center">
+        <section class="container flex flex-col sm:flex-row items-center justify-center gap-x-3 gap-y-3">
+            <div class="w-full md:w-1/2">
+                <h1 class="font-bold text-5xl mb-4">Hey, I am <span class="text-purple-600">Mostafa
+                        Ebrahim</span></h1>
+                <p class="text-xl font-semibold" id="typewriterText"></p>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col items-center justify-center">
+                <div class="rounded-full border-[20px] overflow-hidden border-purple-500 w-full mb-4">
+                    <img src="imgs/my-img.png" class="rounded-full w-full  bg-cover grayscale">
+                </div>
+                <ul class="flex flex-row gap-4">
+                    <li class="socials bg-blue-700">
+                        <a href="#" class="flex items-center justify-center"> <i class="fa-brands fa-facebook"></i>
+                        </a>
                     </li>
-                    <li class="rounded-lg relative bottom-animation">
-                        <a class="block h-full w-full" href="./about.html">About</a>
+                    <li class="socials bg-black"><a href="#" class="flex items-center justify-center"> <i
+                                class="fa-brands fa-github"></i> </a>
                     </li>
-                    <li class="rounded-lg relative bottom-animation">
-                        <a class="block h-full w-full" href="./resume.html">Resume</a>
+                    <li class="socials bg-red-500"><a href="#" class="flex items-center justify-center"> <i
+                                class="fa-brands fa-google"></i> </a>
                     </li>
-                    <li class="rounded-lg relative bottom-animation">
-                        <a class="block h-full w-full" href="./service.html">Service</a>
-                    </li>
-                    <li class="rounded-lg relative bottom-animation">
-                        <a class="block h-full w-full" href="./contact.html">Contact</a>
+                    <li class="socials bg-blue-500"><a href="#" class="flex items-center justify-center"> <i
+                                class="fa-brands fa-linkedin-in"></i>
+                        </a>
                     </li>
                 </ul>
-            </header>
-
-            <section class="w-full h-[calc(100vh-60px)]" id="Home">
-                <div class="container h-full">
-                    <div class="grid gap-3 grid-cols-12 h-full">
-                        <div
-                            class="flex flex-col justify-center space-y-3 text-start relative col-span-12 lg:col-span-6 row-span-12 pt-5">
-                            <div
-                                class=" mt-5 mx-auto w-0 h-0 border-[30px] -mb-10 border-purple-600 border-l-transparent border-r-transparent border-b-transparent animate-bounce ">
-                            </div>
-                            <h1 class="font-bold text-5xl">Hey, I'am <span class="text-purple-600">Mostafa
-                                    Ebrahim</span>
-                            </h1>
-                            <p class="text-xl font-semibold">I'am a verstile Developer specializing in both Backend and
-                                Frontend Technologies. I build dynamic web applications with laravel for the backend and
-                                create
-                                engaging user interfaces with modern frontend tools</p>
-                        </div>
-                        <div
-                            class="grow flex flex-col space-y-5 items-center justify-center col-span-12 lg:col-span-6 row-span-12 overflow-hidden p-3">
-
-                            <div
-                                class="rounded-full relative border-purple-600 border-[20px] overflow-hidden flex justify-center items-center">
-                                <img src="./imgs/my-img.png" class="w-full h-full text-center saturate-0"
-                                    alt="mostafa Image" decoding="async">
-                            </div>
-                            <ul class=" flex flex-row gap-2">
-                                <li class="flex items-center text-white">
-                                    <a href="https://www.facebook.com/mostafa.ebrahim.22" target="_blank"
-                                        class="flex items-center justify-center bg-blue-600 h-12 w-12 text-3xl rounded-full">
-                                        <i class="fa-brands fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="flex flex-col items-center text-white">
-                                    <a href="https://github.com/MostafaEbrahim212" target="_blank"
-                                        class="flex items-center justify-center bg-black h-12 w-12 text-3xl rounded-full">
-                                        <i class="fa-brands fa-github"></i>
-                                    </a>
-                                </li>
-                                <li class="flex flex-col items-center text-white">
-                                    <a href="mailto:sasa9121963@gmail.com" target="_blank"
-                                        class="flex items-center justify-center bg-red-500 h-12 w-12 text-3xl rounded-full">
-                                        <i class="fa-brands fa-google"></i>
-                                    </a>
-                                </li>
-                                <li class="flex flex-col items-center text-white">
-                                    <a href="https://www.linkedin.com/in/mostafa-ebrahim-91384326a/"
-                                    target="_blank"
-                                        class="flex items-center justify-center bg-blue-500 h-12 w-12 text-3xl rounded-full">
-                                        <i class="fa-brands fa-linkedin-in"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <nav id="nav" class="hidden top-[60px] right-0 w-[150px] sm:hidden  bg-white rounded-lg p-3 shadow h-fit">
-            <ul
-                class="locations text-lg text-purple-500 hover:text-purple-600 mx-auto font-semibold items-start flex-col space-y-4 ">
-                <li class="rounded-lg relative bottom-animation">
-                    <a class="block h-full w-full" href="./index.html">Home</a>
-                </li>
-                <li class="rounded-lg relative bottom-animation ">
-                    <a class="block h-full w-full" href="./about.html">About</a>
-                </li>
-                <li class="rounded-lg relative bottom-animation">
-                    <a class="block h-full w-full" href="./resume.html">Resume</a>
-                </li>
-                <li class="rounded-lg relative bottom-animation">
-                    <a class="block h-full w-full" href="./service.html">Service</a>
-                </li>
-                <li class="rounded-lg relative bottom-animation">
-                    <a class="block h-full w-full" href="./contact.html">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+            </div>
+        </section>
+    </main>
+    <nav id="nav" class="hidden top-[60px] right-0 w-[150px] sm:hidden  bg-white rounded-lg p-3 shadow h-fit">
+        <ul
+            class="locations text-lg text-purple-500 hover:text-purple-600 mx-auto font-semibold items-start flex-col space-y-4 ">
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./index.html">Home</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation ">
+                <a class="block h-full w-full" href="./about.html">About</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./resume.html">Resume</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./service.html">Service</a>
+            </li>
+            <li class="rounded-lg relative bottom-animation">
+                <a class="block h-full w-full" href="./contact.html">Contact</a>
+            </li>
+        </ul>
+    </nav>
 
     <script src="./js/all.min.js"></script>
     <script src="./js/script.js"></script>
