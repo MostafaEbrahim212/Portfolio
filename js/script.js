@@ -2,16 +2,37 @@ const btnNav = document.getElementById('toggle-nav');
 const nav = document.getElementById('nav');
 const main = document.getElementById('main');
 const btnIcon = document.getElementById('btn-icon');
-btnNav.addEventListener('click', (e) => {
-    nav.classList.toggle('hidden')
-    nav.classList.toggle('fixed')
-    btnNav.querySelector('.icon').classList.toggle('fa-bars');
-    btnNav.querySelector('.icon').classList.toggle('fa-bars-staggered')
-});
+const pageName = document.location.pathname;
+
+
+const pages = {
+    'home': '/index.html',
+    'about': '/about.html',
+    'resume': '/resume.html',
+    'contact': '/contact.html',
+    'service': '/service.html',
+}
 
 if (window.innerWidth >= 768) {
     nav.classList.add('hidden')
 }
+btnNav.addEventListener('click', (e) => {
+    toggleNav()
+});
+function toggleNav() {
+    nav.classList.toggle('hidden')
+    nav.classList.toggle('fixed')
+    btnNav.querySelector('.icon').classList.toggle('fa-bars');
+    btnNav.querySelector('.icon').classList.toggle('fa-bars-staggered')
+}
+main.addEventListener('click', () => {
+    if (nav.classList.contains('fixed')) {
+        toggleNav();
+    }
+})
+
+
+
 
 const navs = document.querySelectorAll('.locations')
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,77 +48,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-console.log(document.location.href);
 const topButton = document.getElementById('btn-top');
-const scrollFunction = () => {
+
+function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         topButton.style.display = 'block';
     } else {
         topButton.style.display = 'none';
     }
 };
+
 scrollFunction();
 
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 };
+
 window.onscroll = () => {
     scrollFunction();
+    if (nav.classList.contains('fixed')) {
+        toggleNav();
+    }
 };
+
 topButton.addEventListener('click', () => {
     topFunction()
 })
 
 
 
-
 // HOME SCRIPTIS
-document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('overlay');
-    const intro = document.getElementById('intro');
+if (pageName == pages.home) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const overlay = document.getElementById('overlay');
+        const intro = document.getElementById('intro');
 
-    if (!sessionStorage.getItem('animationShowed')) {
-        setTimeout(() => {
-            intro.querySelectorAll('span').forEach((span, idx) => {
-                setTimeout(() => {
-                    span.classList.remove('hidden-span');
-                    span.classList.add('visible-span');
-                }, idx * 100);
-            });
+        if (!sessionStorage.getItem('animationShowed')) {
             setTimeout(() => {
-                overlay.classList.add('animate-up');
-            }, intro.querySelectorAll('span').length * 100 + 1000);
-            sessionStorage.setItem('animationShowed', 'true');
-        }, 500);
-    } else {
-        overlay.style.display = 'none';
-    }
-
-    const text = `I am a versatile Developer specializing in both Backend and Frontend Technologies. I build dynamic web applications with Laravel for the backend and create engaging user interfaces with modern frontend tools`
-    let index = 0;
-    let speed = 50;
-
-    function typeWriter() {
-        if (index < text.length) {
-            const typeWriterText = document.getElementById('typewriterText');
-            typeWriterText.innerHTML = text.substring(0, index + 1) + `<span class="blink-cursor w-fit p-0 m-0">|</span>`
-            index++;
-            setTimeout(typeWriter, speed)
+                intro.querySelectorAll('span').forEach((span, idx) => {
+                    setTimeout(() => {
+                        span.classList.remove('hidden-span');
+                        span.classList.add('visible-span');
+                    }, idx * 100);
+                });
+                setTimeout(() => {
+                    overlay.classList.add('animate-up');
+                }, intro.querySelectorAll('span').length * 100 + 1000);
+                sessionStorage.setItem('animationShowed', 'true');
+            }, 500);
+        } else {
+            overlay.style.display = 'none';
         }
 
-    }
-    typeWriter();
-});
-// HOME SCRIPTIS
+        const text = `I am a versatile Developer specializing in both Backend and Frontend Technologies. I build dynamic web applications with Laravel for the backend and create engaging user interfaces with modern frontend tools`
+        let index = 0;
+        let speed = 50;
 
+        function typeWriter() {
+            if (index < text.length) {
+                const typeWriterText = document.getElementById('typewriterText');
+                typeWriterText.innerHTML = text.substring(0, index + 1) + `<span class="blink-cursor w-fit p-0 m-0">|</span>`
+                index++;
+                setTimeout(typeWriter, speed)
+            }
 
-
-
-
-const ball = document.getElementById('ball');
-if (ball) {
+        }
+        typeWriter();
+    });
+    const ball = document.getElementById('ball');
 
     const ballSize = 80;
     const ballSpeed = 5;
@@ -171,6 +190,13 @@ if (ball) {
         isDragging = false;
     });
 }
+
+// HOME SCRIPTIS
+
+
+
+
+
 
 
 
